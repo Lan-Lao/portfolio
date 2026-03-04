@@ -1,9 +1,9 @@
 :root {
-  --bg: #f8f9fb;
-  --surface: #ffffff;
+  --bg: #f3edff;
+  --surface: rgba(255, 255, 255, 0.72);
   --text: #111827;
   --text-soft: #4b5563;
-  --line: #e5e7eb;
+  --line: rgba(139, 92, 246, 0.18);
   --accent: #1d4ed8;
   --accent-dark: #1e40af;
   --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
@@ -19,11 +19,50 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
-  background: var(--bg);
+  background: radial-gradient(circle at 20% 20%, #f7f2ff 0%, #efe6ff 42%, #ebe3ff 100%);
   line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: auto;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(58px);
+  opacity: 0.7;
+}
+
+body::before {
+  width: min(42vw, 460px);
+  height: min(42vw, 460px);
+  top: -120px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.56) 0%, rgba(168, 85, 247, 0.05) 72%);
+  animation: floatGlowA 14s ease-in-out infinite alternate;
+}
+
+body::after {
+  width: min(45vw, 520px);
+  height: min(45vw, 520px);
+  right: -120px;
+  top: 35vh;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.5) 0%, rgba(129, 140, 248, 0.03) 70%);
+  animation: floatGlowB 16s ease-in-out infinite alternate;
+}
+
+main,
+.site-header,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 h1,
@@ -80,7 +119,7 @@ p {
   z-index: 100;
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(10px);
-  background: rgba(248, 249, 251, 0.88);
+  background: rgba(248, 243, 255, 0.72);
 }
 
 .nav {
@@ -130,6 +169,32 @@ p {
 .hero {
   border-top: none;
   padding: 7rem 0 5.5rem;
+}
+
+.hero .container {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.4rem, 4vw, 2.6rem);
+  border-radius: calc(var(--radius) + 8px);
+  border: 1px solid rgba(196, 181, 253, 0.7);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(216, 180, 254, 0.45) 0%, rgba(216, 180, 254, 0) 40%),
+    radial-gradient(circle at 85% 18%, rgba(129, 140, 248, 0.25) 0%, rgba(129, 140, 248, 0) 42%),
+    rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 45px rgba(139, 92, 246, 0.2);
+}
+
+.hero .container::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -80px;
+  bottom: -130px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.44) 0%, rgba(167, 139, 250, 0) 72%);
+  filter: blur(18px);
 }
 
 .tagline {
@@ -416,5 +481,27 @@ textarea:focus {
 
   .hero {
     padding-top: 5.2rem;
+  }
+
+  .hero .container {
+    padding: 1.15rem;
+  }
+}
+
+@keyframes floatGlowA {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(30px, 45px, 0) scale(1.12);
+  }
+}
+
+@keyframes floatGlowB {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-45px, -30px, 0) scale(1.08);
   }
 }
