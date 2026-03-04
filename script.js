@@ -1,4 +1,4 @@
-// Toggle mobile navigation menu
+// Mobile navigation toggle
 const toggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -9,7 +9,6 @@ if (toggle && navLinks) {
     navLinks.classList.toggle('open');
   });
 
-  // Close menu after selecting a link on mobile
   navLinks.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
@@ -18,10 +17,29 @@ if (toggle && navLinks) {
   });
 }
 
-// Scroll reveal animation using IntersectionObserver
+// Smooth anchor navigation with sticky-header offset
+const header = document.querySelector('.site-header');
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener('click', (event) => {
+    const targetId = anchor.getAttribute('href');
+    if (!targetId || targetId === '#') return;
+
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    event.preventDefault();
+    const offset = header ? header.offsetHeight + 16 : 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+    history.replaceState(null, '', targetId);
+  });
+});
+
+// Scroll reveal animation
 const revealItems = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver(
-  (entries) => {
+const revealObserver = new IntersectionObserver(
+  (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('reveal-visible');
@@ -29,14 +47,32 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.15,
-  }
+  { threshold: 0.14 }
 );
 
-revealItems.forEach((item) => observer.observe(item));
+revealItems.forEach((item) => revealObserver.observe(item));
 
-// Basic front-end form validation and user feedback
+// Active nav state on scroll
+const sections = document.querySelectorAll('main section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
+
+const navObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      navAnchors.forEach((link) => {
+        const active = link.getAttribute('href') === `#${entry.target.id}`;
+        link.classList.toggle('active', active);
+      });
+    });
+  },
+  { threshold: 0.5 }
+);
+
+sections.forEach((section) => navObserver.observe(section));
+
+// Front-end contact form validation
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
 
