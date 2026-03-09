@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Sticky navigation bar with smooth in-page anchors -->
     <header class="site-header" id="top">
       <nav class="container nav" aria-label="Primary">
         <a class="brand" href="#hero">Lan Lao</a>
@@ -39,29 +38,35 @@
           <li><a href="#education">Education</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+        <button class="mode-toggle button" id="dark-mode-toggle" type="button" aria-pressed="false">
+          Dark Mode
+        </button>
       </nav>
     </header>
 
     <main>
-      <!-- HERO -->
-      <section class="section hero reveal" id="hero">
-        <div class="container panel">
-          <p class="eyebrow">Portfolio</p>
-          <h1>Lan Lao</h1>
-          <h2>Information Systems Management Student</h2>
-          <p class="tagline">
-            Information Systems Management Student | AWS • Linux • SQL • Tableau
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-secondary" href="#" aria-label="Download resume">Download Resume</a>
-            <a class="btn btn-ghost" href="#contact">Contact Me</a>
+      <section class="section hero reveal card-section" id="hero">
+        <div class="container panel hero-layout">
+          <div class="hero-content">
+            <p class="eyebrow">Portfolio</p>
+            <h1>Lan Lao</h1>
+            <h2>Information Systems Management Student</h2>
+            <p class="tagline">
+              Information Systems Management Student | AWS • Linux • SQL • Tableau
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary button" href="#projects">View Projects</a>
+              <a class="btn btn-secondary button" href="#" aria-label="Download resume">Download Resume</a>
+              <a class="btn btn-ghost button" href="#contact">Contact Me</a>
+            </div>
+          </div>
+          <div class="hero-image-wrap">
+            <img src="profile-placeholder.svg" class="profile-picture" alt="Profile picture of Lan Lao" />
           </div>
         </div>
       </section>
 
-      <!-- ABOUT -->
-      <section class="section reveal" id="about">
+      <section class="section reveal card-section" id="about">
         <div class="container panel about-grid">
           <article>
             <p class="section-label">About</p>
@@ -102,8 +107,7 @@
         </div>
       </section>
 
-      <!-- SKILLS -->
-      <section class="section reveal" id="skills">
+      <section class="section reveal card-section" id="skills">
         <div class="container panel">
           <p class="section-label">Skills</p>
           <h3>Technical Toolkit</h3>
@@ -142,8 +146,7 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
-      <section class="section reveal" id="projects">
+      <section class="section reveal card-section" id="projects">
         <div class="container panel">
           <p class="section-label">Projects</p>
           <h3>Selected Work</h3>
@@ -193,8 +196,7 @@
         </div>
       </section>
 
-      <!-- EXPERIENCE -->
-      <section class="section reveal" id="experience">
+      <section class="section reveal card-section" id="experience">
         <div class="container panel">
           <p class="section-label">Experience</p>
           <h3>Professional Experience</h3>
@@ -211,8 +213,7 @@
         </div>
       </section>
 
-      <!-- CERTIFICATIONS -->
-      <section class="section reveal" id="certifications">
+      <section class="section reveal card-section" id="certifications">
         <div class="container panel">
           <p class="section-label">Certifications</p>
           <h3>Continuing Education</h3>
@@ -231,8 +232,7 @@
         </div>
       </section>
 
-      <!-- EDUCATION -->
-      <section class="section reveal" id="education">
+      <section class="section reveal card-section" id="education">
         <div class="container panel">
           <p class="section-label">Education</p>
           <h3>Academic Background</h3>
@@ -252,8 +252,7 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section class="section reveal" id="contact">
+      <section class="section reveal contact-section" id="contact">
         <div class="container panel contact-wrap">
           <p class="section-label">Contact</p>
           <h3>Let’s Connect</h3>
@@ -261,6 +260,8 @@
             I’m open to internships and opportunities in information systems, cloud
             operations, and cybersecurity-focused roles.
           </p>
+          <p class="contact-email"><a href="mailto:email@example.com">email@example.com</a></p>
+          <a class="btn btn-primary contact-button" href="mailto:email@example.com">Contact Me</a>
 
           <form id="contact-form" novalidate>
             <div class="field">
@@ -275,7 +276,7 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary contact-button">Submit</button>
             <p id="form-status" role="status" aria-live="polite"></p>
           </form>
 
@@ -287,6 +288,8 @@
         </div>
       </section>
     </main>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
   </body>
