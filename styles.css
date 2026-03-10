@@ -226,8 +226,8 @@ body.dark-theme .site-header {
 }
 
 .profile-picture {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   object-fit: cover;
   display: block;
   margin-inline: auto;
