@@ -223,11 +223,12 @@ body.dark-theme .site-header {
 
 .hero-image-wrap {
   flex-shrink: 0;
+  transform: translateX(-12px);
 }
 
 .profile-picture {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   object-fit: cover;
   display: block;
   margin-inline: auto;
@@ -645,6 +646,10 @@ textarea:focus {
   .hero-layout {
     text-align: center;
     justify-items: center;
+  }
+
+  .hero-image-wrap {
+    transform: translateX(0);
   }
 
   .hero-actions {
